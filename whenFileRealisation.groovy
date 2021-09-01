@@ -8,6 +8,16 @@ pipeline {
           script {
                 echo "------------------Start pipeline target variable------"
                 echo "variable is : ${enableSWDL}"
+                /* …or create a new repository on the command line
+                echo "# groovytest" >> README.md
+                git init
+                git add README.md
+                git commit -m "first commit"
+                git branch -M main
+                git remote add origin git@github.com:ufonlo/groovytest.git
+                git push -u origin main
+                …or push an existing repository from the command line
+                */
           }
       }
     }
@@ -17,6 +27,11 @@ pipeline {
                 steps {
                     script {
                         echo "enableSWDL statu is : ${enableSWDL}"
+                        if (enableSWDL){
+                        echo "enableSWDL statu is : ${enableSWDL}"
+                        } else {
+                        echo "enableSWDL statu is : ${enableSWDL}"
+                        }
                         }
 
       }
