@@ -1,39 +1,29 @@
 @Library('SharedLibriary@dev')_
-Boolean enableSWDL = true
+Boolean enableSWDL = false
+String testsvalue = ""
 pipeline {
-  agent { node { label 'HIL2' }}
+  agent { node { label 'build_ubuntu' }}
   stages {
     stage('Get Artifacts') {
       steps {
           script {
                 echo "------------------Start pipeline target variable------"
                 echo "variable is : ${enableSWDL}"
-                /* …or create a new repository on the command line
-                echo "# groovytest" >> README.md
-                git init
-                git add README.md
-                git commit -m "first commit"
-                git branch -M main
-                sat text
-                text
-                git remote add origin git@github.com:ufonlo/groovytest.git
-                git push -u origin main
-                */
           }
       }
     }
     stage('Push Artifacts') {
         agent { node { label 'build_ubuntu' }}
-            when { expression { enableSWDL != true } }
+            //when { expression { enableSWDL } }
                 steps {
                     script {
                         echo "enableSWDL statu is : ${enableSWDL}"
-                        if (enableSWDL){
+                        if (!enableSWDL){
                         echo "enableSWDL statu is : ${enableSWDL}"
-                        } else {
-                        echo "enableSWDL statu is : ${enableSWDL}"
+                        testsvalue = "\n\n====  Attention!!! ====\nYou have disabled enableSWDL options - skip downloading artifacts!\nTesting will take place with the current artifacts that are already flashed on HIL"
                         }
-                        }
+                        println("Test value is\n${testsvalue}")
+        }
 
       }
     }
