@@ -14,6 +14,8 @@ pipeline {
                 git add README.md
                 git commit -m "first commit"
                 git branch -M main
+                sat text
+                text
                 git remote add origin git@github.com:ufonlo/groovytest.git
                 git push -u origin main
                 */
